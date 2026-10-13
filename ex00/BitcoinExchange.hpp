@@ -9,6 +9,7 @@
 class BitcoinExchange{
     private:
         std::map<std::string, double> t;
+        void load_data(std::string file);
 
     public:
         BitcoinExchange();
@@ -16,8 +17,20 @@ class BitcoinExchange{
         BitcoinExchange &operator=(const BitcoinExchange &copy);    
         ~BitcoinExchange();
 
-        class CouldnotOpen : public std::exception{
+        class CouldNotOpen : public std::exception{
             public:
                 virtual const char *what() const throw();
         };
+        class InvalidFile : public std::exception{
+            public:
+                virtual const char *what() const throw();
+        };
+        class InvalidDate : public std::exception{
+            virtual const char *what() const throw();
+        };
+        class InvalidRate : public std::exception{
+            virtual const char *what() const throw();
+        };
 };
+
+
