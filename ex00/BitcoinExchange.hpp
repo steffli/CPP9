@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <cstdlib>
 #include <exception>
 
 class BitcoinExchange{
@@ -26,10 +27,12 @@ class BitcoinExchange{
                 virtual const char *what() const throw();
         };
         class InvalidDate : public std::exception{
-            virtual const char *what() const throw();
+            public:
+                virtual const char *what() const throw();
         };
         class InvalidRate : public std::exception{
-            virtual const char *what() const throw();
+            public:
+                virtual const char *what() const throw();
         };
 };
 
