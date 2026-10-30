@@ -1,16 +1,19 @@
 #include "BitcoinExchange.hpp"
 
 int main(int ac, char **av){
-    if (ac != 2)
-        return(std::cout << "Invalid number of arguments.\nUsage: ./btc [file-name]." << std::endl, 1);
-
-    std::ifstream file(av[1]);
-    std::string line;
-    if (file.is_open()){
-        while(std::getline(file, line)){
-            std::cout << line << std::endl;
-        }
-        file.close();
+    if (ac != 2){
+        std::cout << "Error: could not open file." << std::endl;
+        return 1;
     }
+
+    BitcoinExchange btc;
+    try {
+        btc.load_data("data.csv");
+    }
+    catch (std::exception &e){
+        std::cout << e.what() << std::endl;
+        return 1;
+    }
+    btc.convert(av[1]);
     return 0;
 }

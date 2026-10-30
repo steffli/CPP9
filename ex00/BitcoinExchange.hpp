@@ -10,13 +10,15 @@
 class BitcoinExchange{
     private:
         std::map<std::string, double> t;
-        void load_data(std::string file);
 
     public:
         BitcoinExchange();
         BitcoinExchange (const BitcoinExchange &copy);
-        BitcoinExchange &operator=(const BitcoinExchange &copy);    
+        BitcoinExchange &operator=(const BitcoinExchange &copy);
         ~BitcoinExchange();
+
+        void load_data(std::string file);
+        void convert(const std::string &file) const;
 
         class CouldNotOpen : public std::exception{
             public:
